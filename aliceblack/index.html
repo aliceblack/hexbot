@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <p id="item">__________________</p>
+        
+        
+        <script>
+         	setInterval(function() {
+                getColorFromHexBot();
+            }, 2000);
+        
+           	function getColorFromHexBot() {
+                var init = { method: 'GET',
+                           mode: 'cors',
+                           cache: 'default' };
+                fetch("https://api.noopschallenge.com/hexbot",init)
+                .then(response => {
+                  response.json().then(body=>{
+                    colorTransition(body.colors[0].value);
+                  });
+                })
+                .catch(error => console.log(error))
+            }
+        
+            function colorTransition(color) {
+            	var element = document.getElementById("item");
+            	element.style.transition = "all 1s"; 
+              	element.style.color = color;
+            }
+        </script>
+
+    </body>
+</html>
